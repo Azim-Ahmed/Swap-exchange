@@ -1,0 +1,156 @@
+@import url("https://fonts.googleapis.com/css2?family=Asap&display=swap");
+body {
+    margin: 0;
+    font-family: "Asap", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    padding: 0;
+}
+
+code {
+    font-family: Asap, sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+.loaderStyle {
+    height: calc(var(--app-height) - 100px);
+}
+.ql-editor{
+    min-height: 80px;
+}
+.ql-editor.ql-blank::before{
+    font-size: 15px;
+    font-style: normal;
+}
+#mui-rte-Save-button {
+    position: absolute;
+    top: 100%;
+    right: 95%;
+}
+
+.jFanTw .smooth-dnd-container::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+    border-radius: 6px;
+}
+
+.jFanTw .smooth-dnd-container {
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    overflow-y: auto;
+    min-width: 250px;
+    overflow-x: hidden;
+    -webkit-align-self: center;
+    -ms-flex-item-align: center;
+    align-self: center;
+    max-height: calc(var(--app-height) - 270px);
+    margin-top: 10px;
+    height: 100%;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+    border-radius: 6px;
+}
+
+.jFanTw {
+    overflow-y: hidden !important;
+    max-height: 100% !important;
+}
+
+.jFanTw .smooth-dnd-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.jFanTw .smooth-dnd-container::-webkit-scrollbar-thumb {
+    background: #989a9c;
+    border-radius: 10px;
+}
+
+
+/* Track */
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+
+/* Handle */
+
+::-webkit-scrollbar-thumb {
+    background: #7b7e80;
+    border-radius: 10px;
+}
+
+.react-trello-board::-webkit-scrollbar-thumb {
+    background: #989a9c;
+    border-radius: 130px;
+}
+
+.react-trello-board::-webkit-scrollbar-track {
+    background: rgb(223, 217, 216);
+}
+
+
+/* Handle on hover */
+
+::-webkit-scrollbar-thumb:hover {
+    background: #989a9c;
+}
+
+.dateStyle .MuiInput-underline:before,
+.MuiInput-underline:after {
+    content: unset !important;
+    content: unset !important;
+}
+
+.dateStyle .MuiInputBase-inputAdornedEnd {
+    margin-left: 10px;
+}
+
+.rdw-editor-main {
+    min-height: 100px;
+    overflow: unset;
+}
+
+.rdw-dropdown-optionwrapper {
+    max-height: 132px;
+}
+
+.rdw-image-modal {
+    right: 0;
+    left: unset;
+}
+
+.rdw-link-modal {
+    right: 0;
+    left: unset;
+}
+
+.rdw-suggestion-option {
+    cursor: pointer;
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently */
+}

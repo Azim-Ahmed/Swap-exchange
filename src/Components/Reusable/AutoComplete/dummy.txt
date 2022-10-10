@@ -1,0 +1,89 @@
+
+          <AutoComplete
+            control={controlForCreate}
+            onChange={(e, f) => setAssignee(f.value)}
+            renderOption={(option, { selected }) => (
+              <div className={classes.flexBetweenCenter}>
+                <UserAvatar
+                  className={classes.typesIconStyle}
+                  getAvatar={getAvatar}
+                  getName={getName}
+                  userId={option.value}
+                />
+                <p
+                  style={{
+                    color: "black",
+                    display: "block",
+                    marginLeft: "10px",
+                  }}
+                >
+                  {option.label}
+                </p>
+              </div>
+            )}
+            options={toUsers}
+            getOptionLabel={(option) => option.label}
+            label="Assignee"
+            createCard
+          />
+          <AutoComplete
+            control={controlForCreate}
+            onChange={(e, f) => setEpicId(f.value)}
+            renderOption={(option, { selected }) => (
+              <div
+                style={{
+                  width: "100%",
+                  background: option.color ? option.color : "#67c6c0",
+                }}
+              >
+                <p
+                  style={{
+                    color: "black",
+                    marginLeft: "10px",
+                  }}
+                >
+                  {option.label}
+                </p>
+              </div>
+            )}
+            options={toEpics}
+            getOptionLabel={(option) => option.label}
+            label="Epic link"
+            createCard
+          />
+          <Autocomplete
+            options={toEpics}
+            getOptionLabel={(option) => option.label}
+            getOptionSelected={(option, value) => {
+              return option.value === value.value;
+            }}
+            style={{ width: "100%", marginTop: "16px" }}
+            id="blur-on-select"
+            blurOnSelect
+            onChange={(e, f) => setEpicId(f.value)}
+            renderOption={(option, { selected }) => (
+              <div
+                style={{
+                  width: "100%",
+                  background: option.color ? option.color : "#67c6c0",
+                }}
+              >
+                <p
+                  style={{
+                    color: "black",
+                    marginLeft: "10px",
+                  }}
+                >
+                  {option.label}
+                </p>
+              </div>
+            )}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                fullWidth
+                label="Epic link"
+                variant="outlined"
+              />
+            )}
+          />
