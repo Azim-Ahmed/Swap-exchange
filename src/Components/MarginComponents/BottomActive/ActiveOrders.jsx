@@ -143,58 +143,101 @@ export default function ActiveOrders({ tableData, handleChangeData, balance }) {
             </TableHead>
             <TableBody>
               {tableData ? (
-                tableData.map((row, index) => (
-                  <TableRow
-                    key={index}
-                    onClick={() => handleChangeData(row)}
-                    style={{ maxWidth: "240px" }}
-                  >
-                    <TableCell
-                      style={{ fontSize: "11px" }}
-                      align="left"
-                      component="th"
-                      scope="row"
+                tableData.map((row, index) =>
+                  balance ? (
+                    <TableRow
+                      key={index}
+                      onClick={() => handleChangeData(row)}
+                      style={{ maxWidth: "240px" }}
                     >
-                      {`${row.stock_item?.item}/${row.base_item?.item}`}
-                    </TableCell>
-                    <TableCell
-                      style={{ fontSize: "11px", maxWidth: "80px" }}
-                      align="left"
+                      <TableCell
+                        style={{ fontSize: "11px" }}
+                        align="left"
+                        component="th"
+                        scope="row"
+                      >
+                        {`${row.stock_item?.item}/${row.base_item?.item}`}
+                      </TableCell>
+                      <TableCell style={{ fontSize: "11px" }} align="left">
+                        {row.price}
+                      </TableCell>
+                      <TableCell style={{ fontSize: "11px" }} align="left">
+                        {row.amount}
+                      </TableCell>
+                      <TableCell style={{ fontSize: "11px" }} align="left">
+                        {row.maker_fee}
+                      </TableCell>
+                      <TableCell style={{ fontSize: "11px" }} align="left">
+                        {row.exchange_24}
+                      </TableCell>
+                    </TableRow>
+                  ) : (
+                    <TableRow
+                      key={index}
+                      onClick={() => handleChangeData(row)}
+                      style={{ maxWidth: "240px" }}
                     >
-                      {row.last_price}
-                    </TableCell>
-                    <TableCell style={{ fontSize: "11px" }} align="left">
-                      {row.exchange_24}
-                    </TableCell>
-                  </TableRow>
-                ))
+                      <TableCell
+                        style={{ fontSize: "11px" }}
+                        align="left"
+                        component="th"
+                        scope="row"
+                      >
+                        {`${row.stock_item?.item}/${row.base_item?.item}`}
+                      </TableCell>
+                      <TableCell
+                        style={{ fontSize: "11px", maxWidth: "80px" }}
+                        align="left"
+                      >
+                        {row.last_price}
+                      </TableCell>
+                      <TableCell style={{ fontSize: "11px" }} align="left">
+                        {row.exchange_24}
+                      </TableCell>
+                      <TableCell style={{ fontSize: "11px" }} align="left">
+                        {row.price}
+                      </TableCell>
+                      <TableCell style={{ fontSize: "11px" }} align="left">
+                        {row.amount}
+                      </TableCell>
+                      <TableCell style={{ fontSize: "11px" }} align="left">
+                        {row.maker_fee}
+                      </TableCell>
+                      <TableCell style={{ fontSize: "11px" }} align="left">
+                        {row.exchange_24}
+                      </TableCell>
+                    </TableRow>
+                  )
+                )
               ) : (
                 <TableBody>
-                  <p
-                    style={{
-                      fontSize: "11px",
-                      padding: "24px",
-                      textAlign: "center",
-                    }}
-                  >
-                    <Link
+                  <TableRow>
+                    <TableCell
                       style={{
-                        fontWeight: "600",
-                        color: "black",
+                        fontSize: "11px",
+                        padding: "24px",
+                        textAlign: "center",
                       }}
-                      to="/login"
                     >
-                      Login
-                    </Link>{" "}
-                    or{" "}
-                    <Link
-                      style={{ color: "black", fontWeight: "600" }}
-                      to="register"
-                    >
-                      Signup now
-                    </Link>{" "}
-                    to trade
-                  </p>
+                      <Link
+                        style={{
+                          fontWeight: "600",
+                          color: "black",
+                        }}
+                        to="/login"
+                      >
+                        Login
+                      </Link>{" "}
+                      or{" "}
+                      <Link
+                        style={{ color: "black", fontWeight: "600" }}
+                        to="register"
+                      >
+                        Signup now
+                      </Link>{" "}
+                      to trade
+                    </TableCell>
+                  </TableRow>
                 </TableBody>
               )}
             </TableBody>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -7,7 +7,9 @@ import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import ActiveOrders from "./ActiveOrders";
+import { useDispatch, useSelector } from "react-redux";
 
+import { getOrderHistory } from "redux/actions";
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -53,9 +55,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function BottomActive() {
+  const dispatch = useDispatch();
+  const { orderHistory } = useSelector((state) => state.margin);
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
-
+  useEffect(() => {
+    dispatch(getOrderHistory(1));
+  }, [dispatch]);
+  console.log({ orderHistory });
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -74,13 +81,13 @@ export default function BottomActive() {
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        <ActiveOrders />
+        <ActiveOrders tableData={orderHistory} />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <ActiveOrders />
+        <ActiveOrders tableData={orderHistory} />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <ActiveOrders balance />
+        <ActiveOrders tableData={orderHistory} balance />
       </TabPanel>
     </div>
   );

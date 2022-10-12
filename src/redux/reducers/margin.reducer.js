@@ -10,7 +10,8 @@ const initState = {
     stockPairs: [],
     singlePairData: [],
     candleData: [],
-    currentStock: {}
+    currentStock: {},
+    orderHistory: [],
 };
 
 const marginReducer = (state = initState, action) => {
@@ -54,6 +55,19 @@ const marginReducer = (state = initState, action) => {
                 singlePairData: action.payload.orderData,
                 candleData: action.payload.candleData,
                 currentStock: action.payload.currentStock,
+                success: true
+            };
+        case crytoMarginPage.GET_ORDER_HISTORY_REQUEST:
+            return {
+                ...state,
+                loading: true,
+                success: false
+            };
+        case crytoMarginPage.GET_ORDER_HISTORY_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                orderHistory: action.payload,
                 success: true
             };
         case crytoMarginPage.ACTIVATION__SUCCESS:

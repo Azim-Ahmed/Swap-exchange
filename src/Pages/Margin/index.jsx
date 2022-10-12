@@ -3,6 +3,7 @@ import {
   getAllCrypto,
   getAllStockPair,
   getConditionedData,
+  getOrderHistory,
 } from "redux/actions";
 import {
   OrderBook,
@@ -12,8 +13,7 @@ import {
   BuyAndSell,
 } from "Components/MarginComponents";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getTime } from "date-fns";
 
 /**
@@ -38,6 +38,11 @@ const Margin = (props) => {
       setNewStockPairs(stockPairs);
     }
   }, [stockPairs]);
+  // useEffect(() => {
+  //   dispatch(getOrderHistory(1));
+  // }, [dispatch]);
+  // console.log({ orderHistory });
+  console.log("az", { singlePairData });
   useEffect(() => {
     if (newStockPairs.length) {
       const newStockPairsFinX = newStockPairs.find(
@@ -56,27 +61,27 @@ const Margin = (props) => {
     setNewStockPairs(filteredState);
   };
 
-  useEffect(() => {
-    if (candleData.length) {
-      const newStructured = candleData.map((item) => {
-        const newData = {};
-        newData.x = new Date(getTime(new Date(item.created_at.slice(0, -1))));
-        newData.y = [item?.open, item?.high, item?.low, item?.close];
-        console.log({ newData });
-        return newData;
-      });
-      setCandleData(newStructured);
-    }
-  }, [candleData]);
-  const newStructured = candleData.map((item) => {
-    const newData = {};
-    // newData.x = new Date(1538778600000);
-    newData.x = new Date(getTime(new Date(item.created_at.slice(0, -1))));
+  // useEffect(() => {
+  //   if (candleData.length) {
+  //     const newStructured = candleData.map((item) => {
+  //       const newData = {};
+  //       newData.x = new Date(getTime(new Date(item.created_at.slice(0, -1))));
+  //       newData.y = [item?.open, item?.high, item?.low, item?.close];
+  //       console.log({ newData });
+  //       return newData;
+  //     });
+  //     setCandleData(newStructured);
+  //   }
+  // }, [candleData]);
+  // const newStructured = candleData.map((item) => {
+  //   const newData = {};
+  //   // newData.x = new Date(1538778600000);
+  //   newData.x = new Date(getTime(new Date(item.created_at.slice(0, -1))));
 
-    newData.y = [item?.open, item?.high, item?.low, item?.close];
-    console.log({ newData });
-    return newData;
-  });
+  //   newData.y = [item?.open, item?.high, item?.low, item?.close];
+  //   console.log({ newData });
+  //   return newData;
+  // });
   // console.log({ singlePairData, candleData });
   return (
     <Box mt="40px" style={{ backgroundColor: "#131a33" }}>

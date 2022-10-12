@@ -2,7 +2,6 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
@@ -28,12 +27,13 @@ const useStyles = makeStyles({
  *
  **/
 export default function OrderBook({ RecentTrades, singlePairData }) {
+  console.log({ singlePairData });
   // 1b, 2s
   const buyOrderBook = singlePairData.filter(
-    (item) => item.exchange_type === 1
+    (item) => item?.exchange_type === 1
   );
   const sellOrderBook = singlePairData.filter(
-    (item) => item.exchange_type === 2
+    (item) => item?.exchange_type === 2
   );
   const classes = useStyles();
 
@@ -74,26 +74,27 @@ export default function OrderBook({ RecentTrades, singlePairData }) {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {singlePairData.map((row, index) => (
-                  <TableRow key={index}>
-                    <TableCellUse
-                      style={{ maxWidth: "40px" }}
-                      component="th"
-                      scope="row"
-                      name={row?.price}
-                    />
-                    <TableCellUse
-                      style={{ maxWidth: "10px" }}
-                      name={row?.amount}
-                    />
-                    <TableCellUse
-                      style={{ maxWidth: "20px" }}
-                      name={new Date(row?.created_at).toLocaleDateString(
-                        "en-US"
-                      )}
-                    />
-                  </TableRow>
-                ))}
+                {singlePairData &&
+                  singlePairData.map((row, index) => (
+                    <TableRow key={index}>
+                      <TableCellUse
+                        style={{ maxWidth: "40px" }}
+                        component="th"
+                        scope="row"
+                        name={row?.price}
+                      />
+                      <TableCellUse
+                        style={{ maxWidth: "10px" }}
+                        name={row?.amount}
+                      />
+                      <TableCellUse
+                        style={{ maxWidth: "20px" }}
+                        name={new Date(row?.created_at).toLocaleDateString(
+                          "en-US"
+                        )}
+                      />
+                    </TableRow>
+                  ))}
               </TableBody>
             </Table>
           </TableContainer>
@@ -114,26 +115,27 @@ export default function OrderBook({ RecentTrades, singlePairData }) {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {buyOrderBook.map((row, index) => (
-                  <TableRow key={index}>
-                    <TableCellUse
-                      style={{ maxWidth: "40px" }}
-                      component="th"
-                      scope="row"
-                      name={new Date(row?.created_at).toLocaleDateString(
-                        "en-US"
-                      )}
-                    />
-                    <TableCellUse
-                      style={{ maxWidth: "10px", color: "red" }}
-                      name={row?.price}
-                    />
-                    <TableCellUse
-                      style={{ maxWidth: "10px" }}
-                      name={row?.volume}
-                    />
-                  </TableRow>
-                ))}
+                {buyOrderBook &&
+                  buyOrderBook.map((row, index) => (
+                    <TableRow key={index}>
+                      <TableCellUse
+                        style={{ maxWidth: "40px" }}
+                        component="th"
+                        scope="row"
+                        name={new Date(row?.created_at).toLocaleDateString(
+                          "en-US"
+                        )}
+                      />
+                      <TableCellUse
+                        style={{ maxWidth: "10px", color: "red" }}
+                        name={row?.price}
+                      />
+                      <TableCellUse
+                        style={{ maxWidth: "10px" }}
+                        name={row?.volume}
+                      />
+                    </TableRow>
+                  ))}
               </TableBody>
             </Table>
           </TableContainer>
@@ -152,26 +154,27 @@ export default function OrderBook({ RecentTrades, singlePairData }) {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {sellOrderBook.map((row, index) => (
-                    <TableRow key={index}>
-                      <TableCellUse
-                        style={{ maxWidth: "40px" }}
-                        component="th"
-                        scope="row"
-                        name={new Date(row?.created_at).toLocaleDateString(
-                          "en-US"
-                        )}
-                      />
-                      <TableCellUse
-                        style={{ maxWidth: "10px", color: "green" }}
-                        name={row?.price}
-                      />
-                      <TableCellUse
-                        style={{ maxWidth: "10px" }}
-                        name={row?.volume}
-                      />
-                    </TableRow>
-                  ))}
+                  {sellOrderBook &&
+                    sellOrderBook.map((row, index) => (
+                      <TableRow key={index}>
+                        <TableCellUse
+                          style={{ maxWidth: "40px" }}
+                          component="th"
+                          scope="row"
+                          name={new Date(row?.created_at).toLocaleDateString(
+                            "en-US"
+                          )}
+                        />
+                        <TableCellUse
+                          style={{ maxWidth: "10px", color: "green" }}
+                          name={row?.price}
+                        />
+                        <TableCellUse
+                          style={{ maxWidth: "10px" }}
+                          name={row?.volume}
+                        />
+                      </TableRow>
+                    ))}
                 </TableBody>
               </Table>
             </TableContainer>

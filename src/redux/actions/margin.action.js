@@ -85,6 +85,28 @@ export const getConditionedData = (fullStockRow) => {
         }
     };
 };
+export const getOrderHistory = (id) => {
+    return async (dispatch) => {
+        dispatch({ type: crytoMarginPage.GET_ORDER_HISTORY_REQUEST });
+        try {
+            const res = await axios.get(`/orderHistory/${id}`);
+            console.log("azim", res.data.data)
+            if (res.data.status === "ok") {
+                dispatch({
+                    type: crytoMarginPage.GET_ORDER_HISTORY_SUCCESS,
+                    payload: res?.data?.data?.OrderHistoryData,
+
+                });
+            }
+
+        } catch (error) {
+            dispatch({
+                type: userConstants.USER_REGISTER_FAILURE,
+            });
+            errorAlert(handleErrorMessage(error));
+        }
+    };
+};
 export const buyOrSellAsset = (data) => {
     return async (dispatch) => {
         dispatch({ type: crytoMarginPage.POST_BUY_SELL_ASSETS_REQUEST });
