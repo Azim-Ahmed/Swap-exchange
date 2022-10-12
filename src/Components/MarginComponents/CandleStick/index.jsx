@@ -1,10 +1,10 @@
 // import { Box } from "@material-ui/core";
 import { ApexData } from "assets/Data";
-import { getTime, getUnixTime } from "date-fns";
+// import { getTime, getUnixTime } from "date-fns";
 import React, { useEffect, useState } from "react";
 // import { ApexOptions } from "apexcharts";
 import ReactApexChart from "react-apexcharts";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 const CandleStick = ({ candleData }) => {
   console.log({ candleData, ApexData });
   const statedData = {
@@ -47,12 +47,14 @@ const CandleStick = ({ candleData }) => {
 
   return (
     <div id="chart">
-      <ReactApexChart
-        options={chartState.options}
-        series={chartState?.series}
-        type="candlestick"
-        height={350}
-      />
+      {chartState.options && (
+        <ReactApexChart
+          options={chartState.options}
+          series={chartState?.series}
+          type="candlestick"
+          height={350}
+        />
+      )}
     </div>
   );
 };

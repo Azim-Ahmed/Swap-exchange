@@ -8,6 +8,7 @@ import {
   OrderBook,
   LeftStockPair,
   CandleStick,
+  BottomActive,
   BuyAndSell,
 } from "Components/MarginComponents";
 import { useEffect, useState } from "react";
@@ -87,6 +88,7 @@ const Margin = (props) => {
             newStockPairs={newStockPairs}
             handleFiltered={handleFiltered}
           />
+          <OrderBook RecentTrades singlePairData={singlePairData} />
         </Grid>
         <Grid
           mt="20px"
@@ -102,8 +104,8 @@ const Margin = (props) => {
         <Grid xs={12} md={2} lg={2} item>
           <OrderBook singlePairData={singlePairData} />
         </Grid>
-        <Grid xs={12} md={2} lg={2} item>
-          <OrderBook RecentTrades singlePairData={singlePairData} />
+        <Grid xs={12} md={12} lg={12} item>
+          <BottomActive />
         </Grid>
       </Grid>
     </Box>
