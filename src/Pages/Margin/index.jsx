@@ -61,18 +61,18 @@ const Margin = (props) => {
     setNewStockPairs(filteredState);
   };
 
-  // useEffect(() => {
-  //   if (candleData.length) {
-  //     const newStructured = candleData.map((item) => {
-  //       const newData = {};
-  //       newData.x = new Date(getTime(new Date(item.created_at.slice(0, -1))));
-  //       newData.y = [item?.open, item?.high, item?.low, item?.close];
-  //       console.log({ newData });
-  //       return newData;
-  //     });
-  //     setCandleData(newStructured);
-  //   }
-  // }, [candleData]);
+  useEffect(() => {
+    if (candleData.length) {
+      const newStructured = candleData.map((item) => {
+        const newData = {};
+        newData.x = new Date(getTime(new Date(item.created_at.slice(0, -1))));
+        newData.y = [item?.open, item?.high, item?.low, item?.close];
+        console.log({ newData });
+        return newData;
+      });
+      setCandleData(newStructured);
+    }
+  }, [candleData]);
   // const newStructured = candleData.map((item) => {
   //   const newData = {};
   //   // newData.x = new Date(1538778600000);
