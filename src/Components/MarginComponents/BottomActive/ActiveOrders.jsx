@@ -7,8 +7,9 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import { Box, Button } from "@material-ui/core";
+import { Box } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import { TableCellUse } from "Components/Reusable";
 
 const useStyles = makeStyles({
   table: {
@@ -20,9 +21,19 @@ const useStyles = makeStyles({
  *@author Azim
  *
  **/
-export default function ActiveOrders({ tableData, handleChangeData, balance }) {
+export default function ActiveOrders({
+  tableData,
+  handleChangeData,
+  balance,
+  stockPairs,
+}) {
   const classes = useStyles();
 
+  const getCoinName = (id) => {
+    const getCoin = stockPairs.find((item) => item.id === id);
+    const coinName = `${getCoin?.base_item?.item}/${getCoin?.stock_item?.item}`;
+    return coinName;
+  };
   return (
     <Box>
       <Box>
@@ -150,14 +161,12 @@ export default function ActiveOrders({ tableData, handleChangeData, balance }) {
                       onClick={() => handleChangeData(row)}
                       style={{ maxWidth: "240px" }}
                     >
-                      <TableCell
-                        style={{ fontSize: "11px" }}
-                        align="left"
-                        component="th"
-                        scope="row"
-                      >
-                        {`${row.stock_item?.item}/${row.base_item?.item}`}
-                      </TableCell>
+                      <TableCellUse
+                        style={{ maxWidth: "20px" }}
+                        name={new Date(row?.created_at).toLocaleDateString(
+                          "en-US"
+                        )}
+                      />
                       <TableCell style={{ fontSize: "11px" }} align="left">
                         {row.price}
                       </TableCell>
@@ -177,35 +186,19 @@ export default function ActiveOrders({ tableData, handleChangeData, balance }) {
                       onClick={() => handleChangeData(row)}
                       style={{ maxWidth: "240px" }}
                     >
-                      <TableCell
-                        style={{ fontSize: "11px" }}
-                        align="left"
-                        component="th"
-                        scope="row"
-                      >
-                        {`${row.stock_item?.item}/${row.base_item?.item}`}
-                      </TableCell>
-                      <TableCell
-                        style={{ fontSize: "11px", maxWidth: "80px" }}
-                        align="left"
-                      >
-                        {row.last_price}
-                      </TableCell>
-                      <TableCell style={{ fontSize: "11px" }} align="left">
-                        {row.exchange_24}
-                      </TableCell>
-                      <TableCell style={{ fontSize: "11px" }} align="left">
-                        {row.price}
-                      </TableCell>
-                      <TableCell style={{ fontSize: "11px" }} align="left">
-                        {row.amount}
-                      </TableCell>
-                      <TableCell style={{ fontSize: "11px" }} align="left">
-                        {row.maker_fee}
-                      </TableCell>
-                      <TableCell style={{ fontSize: "11px" }} align="left">
-                        {row.exchange_24}
-                      </TableCell>
+                      <TableCellUse
+                        name={new Date(row?.created_at).toLocaleDateString(
+                          "en-US"
+                        )}
+                      />
+                      <TableCellUse name={getCoinName(row.stock_pair_id)} />
+                      <TableCellUse
+                        name={row.exchange_type === 1 ? "Buy" : "Sell"}
+                      />
+                      <TableCellUse name={row.price} />
+                      <TableCellUse name={row.amount} />
+                      <TableCellUse name={row.maker_fee} />
+                      <TableCellUse name={row.exchange_24} />
                     </TableRow>
                   )
                 )

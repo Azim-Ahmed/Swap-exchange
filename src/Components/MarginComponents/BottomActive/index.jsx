@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function BottomActive() {
   const dispatch = useDispatch();
-  const { orderHistory } = useSelector((state) => state.margin);
+  const { orderHistory, stockPairs } = useSelector((state) => state.margin);
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
   useEffect(() => {
@@ -81,10 +81,10 @@ export default function BottomActive() {
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        <ActiveOrders tableData={orderHistory} />
+        <ActiveOrders stockPairs={stockPairs} tableData={orderHistory} />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <ActiveOrders tableData={orderHistory} />
+        <ActiveOrders stockPairs={stockPairs} tableData={orderHistory} />
       </TabPanel>
       <TabPanel value={value} index={2}>
         <ActiveOrders tableData={orderHistory} balance />
