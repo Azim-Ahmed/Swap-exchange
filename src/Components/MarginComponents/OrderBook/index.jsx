@@ -19,6 +19,14 @@ const useStyles = makeStyles({
   tradeTable: {
     maxWidth: 450,
   },
+
+  tradeTableContainer: {
+    height: "360px",
+  },
+
+  firstTableContainer: {
+    height: "410px",
+  },
 });
 
 /**
@@ -38,33 +46,38 @@ export default function OrderBook({ RecentTrades, singlePairData }) {
   const classes = useStyles();
 
   return (
-    <Box>
+    <Box className={classes.root}>
       {RecentTrades ? (
         <Box>
           <Box
             style={{
-              background: "white",
-              border: "2px solid orange",
+              backgroundColor: "#131a33",
+              color: "white",
+              border: "2px solid gray",
               borderRadius: "8px",
             }}
           >
             <p
               style={{
-                background: "white",
                 padding: "8px",
-                border: "2px solid orange",
+                border: "2px solid gray",
                 borderRadius: "8px",
+                marginLeft: "5px",
                 display: "inline-block",
               }}
             >
               Recent Trades
             </p>
           </Box>
-          <TableContainer component={Paper}>
+          <TableContainer
+            className={classes.tradeTableContainer}
+            component={Paper}
+          >
             <Table
               className={classes.tradeTable}
               size="small"
-              aria-label="a dense table"
+              stickyHeader
+              aria-label="sticky table"
             >
               <TableHead>
                 <TableRow>
@@ -101,11 +114,15 @@ export default function OrderBook({ RecentTrades, singlePairData }) {
         </Box>
       ) : (
         <Box>
-          <TableContainer component={Paper}>
+          <TableContainer
+            className={classes.firstTableContainer}
+            component={Paper}
+          >
             <Table
               className={classes.table}
               size="small"
-              aria-label="a dense table"
+              stickyHeader
+              aria-label="sticky table"
             >
               <TableHead>
                 <TableRow>
@@ -140,11 +157,15 @@ export default function OrderBook({ RecentTrades, singlePairData }) {
             </Table>
           </TableContainer>
           <Box mt="20px">
-            <TableContainer component={Paper}>
+            <TableContainer
+              className={classes.firstTableContainer}
+              component={Paper}
+            >
               <Table
                 className={classes.table}
                 size="small"
-                aria-label="a dense table"
+                stickyHeader
+                aria-label="sticky table"
               >
                 <TableHead>
                   <TableRow>

@@ -1,8 +1,6 @@
-// import { ApexData } from "assets/Data";
+import { makeStyles } from "@material-ui/styles";
 import { getTime } from "date-fns";
-// import { getTime, getUnixTime } from "date-fns";
 import React from "react";
-// import { ApexOptions } from "apexcharts";
 import ReactApexChart from "react-apexcharts";
 import { useSelector } from "react-redux";
 const CandleStick = () => {
@@ -28,8 +26,17 @@ const CandleStick = () => {
         text: "Chart",
         align: "left",
       },
+
       xaxis: {
         type: "datetime",
+      },
+      tooltip: {
+        enabled: true,
+
+        theme: false,
+        style: {
+          fill: "black",
+        },
       },
       yaxis: {
         tooltip: {
@@ -38,14 +45,27 @@ const CandleStick = () => {
       },
     },
   };
+  const useStyles = makeStyles({
+    candleStick: {
+      "& .apexcharts-theme-light": {
+        backgroundColor: "#131a33",
+        color: "white",
+      },
+      "& .apexcharts-text, .apexcharts-title-text": {
+        fill: "white",
+      },
+    },
+  });
+  const classes = useStyles();
   return (
     <div id="chart">
       {newStructured.length && (
         <ReactApexChart
+          className={classes.candleStick}
           options={statedData?.options}
           series={statedData?.series}
           type="candlestick"
-          height={350}
+          height={300}
         />
       )}
     </div>

@@ -15,12 +15,20 @@ const TableCellUse = ({
   component,
   scope,
   maxWidth,
+  notHead,
 }) => {
   const styled = head && { fontWeight: "600", maxWidth: maxWidth };
   return (
     <TableCell
       style={
-        style ? { ...style, fontSize: "11px" } : { fontSize: "11px", ...styled }
+        style
+          ? { ...style, fontSize: "11px", color: "white" }
+          : {
+              fontSize: "11px",
+              ...styled,
+              color: "white",
+              maxWidth: notHead && maxWidth,
+            }
       }
       width={width}
       align={align ? align : "left"}

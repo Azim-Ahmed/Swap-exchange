@@ -5,6 +5,7 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     padding: 0;
+    background: #131a33 !important
 }
 
 code {
@@ -31,34 +32,6 @@ a {
     right: 95%;
 }
 
-.jFanTw .smooth-dnd-container::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-    border-radius: 6px;
-}
-
-.jFanTw .smooth-dnd-container {
-    -webkit-flex: 1;
-    -ms-flex: 1;
-    flex: 1;
-    overflow-y: auto;
-    min-width: 250px;
-    overflow-x: hidden;
-    -webkit-align-self: center;
-    -ms-flex-item-align: center;
-    align-self: center;
-    max-height: calc(var(--app-height) - 270px);
-    margin-top: 10px;
-    height: 100%;
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    -webkit-box-pack: justify;
-    -webkit-justify-content: space-between;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-}
-
 ::-webkit-scrollbar {
     width: 10px;
     height: 10px;
@@ -70,14 +43,8 @@ a {
     max-height: 100% !important;
 }
 
-.jFanTw .smooth-dnd-container::-webkit-scrollbar-track {
-    background: #f1f1f1;
-}
 
-.jFanTw .smooth-dnd-container::-webkit-scrollbar-thumb {
-    background: #989a9c;
-    border-radius: 10px;
-}
+
 
 
 /* Track */
@@ -94,16 +61,21 @@ a {
     border-radius: 10px;
 }
 
-.react-trello-board::-webkit-scrollbar-thumb {
-    background: #989a9c;
-    border-radius: 130px;
+
+.MuiTableCell-stickyHeader{
+    background-color: #131a33 !important;
+    color:white !important
 }
+.MuiTableContainer-root {
 
-.react-trello-board::-webkit-scrollbar-track {
-    background: rgb(223, 217, 216);
-}
+    color: white !important;
+    background-color: #131a33 !important;
+};
 
-
+.apexcharts-tooltip {
+    background: white !important;
+    color: black !important;
+  }
 /* Handle on hover */
 
 ::-webkit-scrollbar-thumb:hover {

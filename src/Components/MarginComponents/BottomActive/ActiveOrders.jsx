@@ -41,7 +41,8 @@ export default function ActiveOrders({
           <Table
             className={classes.table}
             size="small"
-            aria-label="a dense table"
+            stickyHeader
+            aria-label="sticky table"
           >
             <TableHead>
               {balance ? (

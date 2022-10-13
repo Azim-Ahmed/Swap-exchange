@@ -5,9 +5,6 @@ import 'core-js';
 import {
   BrowserRouter as Router,
 } from "react-router-dom";
-import {
-  ReactFlowProvider,
-} from 'react-flow-renderer';
 import App from './app/App';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
@@ -18,9 +15,9 @@ import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 ReactDOM.render(
   <Provider store={store}>
     <Router>
-      <ReactFlowProvider>
-        <App />
-      </ReactFlowProvider>
+
+      <App />
+
     </Router>
   </Provider>,
   document.getElementById('root')

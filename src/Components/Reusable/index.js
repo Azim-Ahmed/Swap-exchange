@@ -10,7 +10,6 @@ export { default as Modal } from "./Modal";
 export { default as QuillText } from "./QuillText";
 export { default as RIconButton } from "./RIconButton";
 export { default as MuiDatePicker } from "./MuiDatePicker";
-export { default as DraftEditor } from "./DraftEditor";
 export { default as SVGRender } from "./SVGRender";
 export { default as AutoComplete } from "./AutoComplete";
 export { default as MPopover } from "./MPopover";

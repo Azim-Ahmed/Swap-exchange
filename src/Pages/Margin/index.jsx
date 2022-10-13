@@ -3,7 +3,6 @@ import {
   getAllCrypto,
   getAllStockPair,
   getConditionedData,
-  getOrderHistory,
 } from "redux/actions";
 import {
   OrderBook,
@@ -14,7 +13,6 @@ import {
 } from "Components/MarginComponents";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getTime } from "date-fns";
 
 /**
  *@function Margin.jsx
@@ -24,11 +22,10 @@ import { getTime } from "date-fns";
 
 const Margin = (props) => {
   const dispatch = useDispatch();
-  const { crytoNames, stockPairs, singlePairData, candleData } = useSelector(
+  const { crytoNames, stockPairs, singlePairData } = useSelector(
     (state) => state.margin
   );
   const [newStockPairs, setNewStockPairs] = useState([]);
-  const [caldleData, setCandleData] = useState([]);
   useEffect(() => {
     dispatch(getAllCrypto());
     dispatch(getAllStockPair());
@@ -38,11 +35,6 @@ const Margin = (props) => {
       setNewStockPairs(stockPairs);
     }
   }, [stockPairs]);
-  // useEffect(() => {
-  //   dispatch(getOrderHistory(1));
-  // }, [dispatch]);
-  // console.log({ orderHistory });
-  console.log("az", { singlePairData });
   useEffect(() => {
     if (newStockPairs.length) {
       const newStockPairsFinX = newStockPairs.find(
@@ -60,29 +52,6 @@ const Margin = (props) => {
     );
     setNewStockPairs(filteredState);
   };
-
-  useEffect(() => {
-    if (candleData.length) {
-      const newStructured = candleData.map((item) => {
-        const newData = {};
-        newData.x = new Date(getTime(new Date(item.created_at.slice(0, -1))));
-        newData.y = [item?.open, item?.high, item?.low, item?.close];
-        console.log({ newData });
-        return newData;
-      });
-      setCandleData(newStructured);
-    }
-  }, [candleData]);
-  // const newStructured = candleData.map((item) => {
-  //   const newData = {};
-  //   // newData.x = new Date(1538778600000);
-  //   newData.x = new Date(getTime(new Date(item.created_at.slice(0, -1))));
-
-  //   newData.y = [item?.open, item?.high, item?.low, item?.close];
-  //   console.log({ newData });
-  //   return newData;
-  // });
-  // console.log({ singlePairData, candleData });
   return (
     <Box mt="40px" style={{ backgroundColor: "#131a33" }}>
       <Grid spacing={1} container>
@@ -95,16 +64,14 @@ const Margin = (props) => {
           />
           <OrderBook RecentTrades singlePairData={singlePairData} />
         </Grid>
-        <Grid
-          mt="20px"
-          style={{ backgroundColor: "white" }}
-          xs={12}
-          md={8}
-          lg={8}
-          item
-        >
-          <CandleStick candleData={caldleData} />
-          <BuyAndSell newStockPairs={newStockPairs} />
+        <Grid mt="20px" xs={12} md={8} lg={8} item>
+          <CandleStick />
+          <Box
+            // style={{ backgroundColor: "white" }}
+            style={{ backgroundColor: "#131a33", color: "white" }}
+          >
+            <BuyAndSell newStockPairs={newStockPairs} />
+          </Box>
         </Grid>
         <Grid xs={12} md={2} lg={2} item>
           <OrderBook singlePairData={singlePairData} />

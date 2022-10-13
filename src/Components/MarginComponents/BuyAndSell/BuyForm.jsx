@@ -1,4 +1,4 @@
-import { Box, Button } from "@material-ui/core";
+import { Box, Button, makeStyles } from "@material-ui/core";
 import { useForm } from "react-hook-form";
 import { HookFormTextField } from "Components/Reusable";
 import { useSelector } from "react-redux";
@@ -42,7 +42,6 @@ const BuyForm = () => {
     newFinalData.margin = "0.10%";
     newFinalData.fee = "0.05%";
     newFinalData.type = 1;
-    console.log("ssssssaaaaaaaaaaaaaaaaaaaaaaassssssssss", { newFinalData });
     dispatch(buyOrSellAsset(newFinalData));
     reset({ price: data.price });
   };
@@ -58,7 +57,8 @@ const BuyForm = () => {
             InputProps={{
               disabled: true,
             }}
-            // errors={createError}
+            // errors={errors}
+
             size="small"
             type="number"
             style={{ width: "100%" }}
@@ -69,7 +69,7 @@ const BuyForm = () => {
             name="amount"
             control={control}
             label="Amount"
-            // errors={createError}
+            errors={errors}
             type="number"
             size="small"
             style={{ width: "100%" }}

@@ -20,15 +20,13 @@ import {
   signup,
   handleRemoveSuccessFromSignup,
 } from "redux/actions";
-// import { VoucherCode } from "assets/Data/VoucherCode";
 import {
   CssTextField,
   Loader,
   ErrorMessages,
   SignBanner,
-  Modal,
 } from "Components/Reusable";
-import Terms from "Components/UtilComponents/Terms";
+
 import { redirectUrl } from "Utils";
 
 const Signup = () => {
@@ -59,7 +57,7 @@ const Signup = () => {
     newData.username = username.toLowerCase();
     newData.roleType = "ADMIN";
     newData.isAdmin = true;
-    newData.avatar = "male1"
+    newData.avatar = "male1";
     // newData.voucherCode = voucher;
     newData.redirectUrl = redirectUrl(domHostname, "activation-link");
     if (password !== cpassword) {
@@ -88,22 +86,6 @@ const Signup = () => {
   };
   const handleClickShowCPassword = () => {
     setValues({ ...values, showCpassword: !values.showCpassword });
-  };
-
-  const renderTermsAndServicesModal = () => {
-    return (
-      <Modal
-        open={openDialogueModal}
-        handleClose={() => {
-          setOpenDialogueModal(false);
-        }}
-        board
-        maxWidth={"1157px"}
-        style={{ overflow: "scroll" }}
-      >
-        <Terms />
-      </Modal>
-    );
   };
 
   // const voucherData = (value) => {
@@ -382,36 +364,7 @@ const Signup = () => {
                     Signup
                   </Button>
                 </Box>
-                {/* <Box
-                  display="flex"
-                  justifyContent="space-between"
-                  alignItems="center"
-                >
-                  {submitting ? (
-                    <Button
-                      type="submit"
-                      size="large"
-                      variant="contained"
-                      color="primary"
-                      fullWidth
-                      className={classes.loginButton}
-                    >
-                      Signup
-                    </Button>
-                  ) : (
-                    <Button
-                      type="submit"
-                      disabled
-                      size="large"
-                      variant="contained"
-                      color="primary"
-                      fullWidth
-                      className={classes.loginButton}
-                    >
-                      Signup
-                    </Button>
-                  )}
-                </Box> */}
+
                 <Typography className={classes.signUpBottomText}>
                   By continuing you indicate that you've read and agree to our
                   &nbsp;
@@ -423,7 +376,6 @@ const Signup = () => {
                     Terms of Service
                   </span>
                 </Typography>
-                {openDialogueModal && renderTermsAndServicesModal()}
               </form>
             </Box>
           )}
