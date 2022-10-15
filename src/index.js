@@ -15,9 +15,7 @@ import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 ReactDOM.render(
   <Provider store={store}>
     <Router>
-
       <App />
-
     </Router>
   </Provider>,
   document.getElementById('root')
